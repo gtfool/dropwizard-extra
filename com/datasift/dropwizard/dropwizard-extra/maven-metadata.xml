@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.datasift.dropwizard</groupId>
+  <artifactId>dropwizard-extra</artifactId>
+  <versioning>
+    <versions>
+      <version>0.7.1-1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20141028183731</lastUpdated>
+  </versioning>
+</metadata>
