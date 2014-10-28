@@ -33,7 +33,7 @@ public class ManagedHBaseClient implements Managed {
      * @throws Exception if there is a problem verifying the .META. table exists.
      */
     public void start() throws Exception {
-        client.ensureTableExists(".META.").joinUninterruptibly(connectionTimeout.toMilliseconds());
+        client.ensureTableExists("hbase:meta").joinUninterruptibly(connectionTimeout.toMilliseconds());
     }
 
     /**
