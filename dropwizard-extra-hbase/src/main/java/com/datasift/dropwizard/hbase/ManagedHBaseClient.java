@@ -2,6 +2,7 @@ package com.datasift.dropwizard.hbase;
 
 import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.util.Duration;
+import org.hbase.async.TableNotFoundException;
 
 /**
  * Manages the lifecycle of an {@link HBaseClient}.
@@ -33,7 +34,13 @@ public class ManagedHBaseClient implements Managed {
      * @throws Exception if there is a problem verifying the .META. table exists.
      */
     public void start() throws Exception {
-        client.ensureTableExists("hbase:meta").joinUninterruptibly(connectionTimeout.toMilliseconds());
+        try {
+            // for hbase > 0.96, meta table has been renamed
+            client.ensureTableExists("hbase:meta").joinUninterruptibly(connectionTimeout.toMilliseconds());
+        } catch (TableNotFoundException e) {
+            // check in case this is an older version of hbase
+            client.ensureTableExists(".META.").joinUninterruptibly(connectionTimeout.toMilliseconds());
+        }
     }
 
     /**

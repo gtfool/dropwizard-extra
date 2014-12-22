@@ -229,7 +229,9 @@ public class HBaseClientFactory {
         client.setIncrementBufferSize(getIncrementBufferSize());
 
         // add healthchecks for META and ROOT tables
+        // TODO instead of adding both <.96 and >.96 checks for meta table, the check should handle naming logic
         environment.healthChecks().register(name + "-meta", new HBaseHealthCheck(client, "hbase:meta"));
+        environment.healthChecks().register(name + "-meta", new HBaseHealthCheck(client, ".META."));
         // -ROOT- removed in .96 on.
         // environment.healthChecks().register(name + "-root", new HBaseHealthCheck(client, "-ROOT-"));
 
