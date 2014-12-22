@@ -119,6 +119,21 @@ public class InstrumentedRowScanner implements RowScanner {
     }
 
     /**
+     * Set the families and qualifiers to select from cells
+     *
+     * @param families the families to select from cells.
+     * @param qualifiers the qualifiers to select from cells.
+     *
+     * @return this {@link RowScanner} to facilitate method chaining.
+     *
+     * @see org.hbase.async.Scanner#setFamilies(byte[][], byte[][][])
+     */
+    public RowScanner setFamilies(final byte[][] families, final byte[][][] qualifiers) {
+        scanner.setFamilies(families, qualifiers);
+        return this;
+    }
+
+    /**
      * Set the qualifier to select from cells
      *
      * @param qualifier the family to select from cells

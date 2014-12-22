@@ -84,6 +84,16 @@ public interface RowScanner {
     public RowScanner setFamily(String family);
 
     /**
+     * Set the families and qualifiers to select from cells
+     *
+     * @param families the families to select from cells.
+     * @param qualifiers the qualifiers to select from cells.
+     *
+     * @return this {@link RowScanner} to facilitate method chaining.
+     */
+    public RowScanner setFamilies(byte[][] families, byte[][][] qualifiers);
+
+    /**
      * Set the qualifier to select from cells
      *
      * @param qualifier the family to select from cells.
