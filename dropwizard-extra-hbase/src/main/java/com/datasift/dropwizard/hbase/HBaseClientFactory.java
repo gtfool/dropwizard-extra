@@ -228,10 +228,8 @@ public class HBaseClientFactory {
         client.setFlushInterval(getFlushInterval());
         client.setIncrementBufferSize(getIncrementBufferSize());
 
-        // add healthchecks for META and ROOT tables
-        // TODO instead of adding both <.96 and >.96 checks for meta table, the check should handle naming logic
-        environment.healthChecks().register(name + "-meta", new HBaseHealthCheck(client, "hbase:meta"));
-        environment.healthChecks().register(name + "-meta", new HBaseHealthCheck(client, ".META."));
+        // add healthchecks for META (account for both pre .96 and post .96 naming change)
+        environment.healthChecks().register(name + "-meta", new HBaseHealthCheck(client, ".META.", "hbase:meta"));
         // -ROOT- removed in .96 on.
         // environment.healthChecks().register(name + "-root", new HBaseHealthCheck(client, "-ROOT-"));
 
