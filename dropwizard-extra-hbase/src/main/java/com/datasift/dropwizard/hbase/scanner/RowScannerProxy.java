@@ -240,6 +240,10 @@ public class RowScannerProxy implements RowScanner {
         return this;
     }
 
+    public RowScanner setMaxVersions(final int versions) {
+        scanner.setMaxVersions(versions);
+        return this;
+    }
     /**
      * Sets the minimum timestamp of the cells to yield.
      *

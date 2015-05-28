@@ -243,6 +243,12 @@ public class BoundedRowScanner implements RowScanner {
         return this;
     }
 
+    @Override
+    public RowScanner setMaxVersions(final int versions) {
+        scanner.setMaxVersions(versions);
+        return this;
+    }
+
     /**
      * Sets the minimum timestamp of the cells to yield.
      *

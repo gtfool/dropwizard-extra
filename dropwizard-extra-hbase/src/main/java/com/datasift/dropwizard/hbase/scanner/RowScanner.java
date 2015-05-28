@@ -181,6 +181,8 @@ public interface RowScanner {
      */
     public RowScanner setMaxNumKeyValues(int maxKeyValues);
 
+    RowScanner setMaxVersions(int versions);
+
     /**
      * Sets the minimum timestamp of the cells to yield.
      *
